@@ -4,6 +4,7 @@
 #include <hpx/util/lightweight_test.hpp>
 #include <hpx/include/parallel_for_loop.hpp>
 #include <hpx/include/parallel_executor_parameters.hpp>
+#include <numeric>
 
 //void print_array(std::vector<double> M)
 //{
@@ -18,16 +19,22 @@ int main(int argc, char* argv[])
     using hpx::parallel::for_loop;
     using hpx::parallel::execution::par;
 
-    int n =500;
+    std::size_t n = 50000UL;
     std::vector<double> x(n,1);
     std::vector<double> y(n,1);
     double a=3.0;
 
-    for_loop(par, 0, n,
-             [&](int i)
+    size_t size=16UL;
+    size_t chunk_size=8UL;
+    hpx::parallel::execution::dynamic_chunk_size ds(chunk_size);
+
+    for_loop( par.with(ds), size_t(0), n, [&](int i)
              {
                  y[i] += a * x[i];
              });
+
+    double sum_of_elems = std::accumulate(y.begin(), y.end(), 0);
+    HPX_TEST_EQ(sum_of_elems, 4*n);
 
 return 0;
 }
