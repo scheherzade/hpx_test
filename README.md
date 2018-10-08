@@ -1,5 +1,5 @@
-# HPX_HelloWorld
-A simple HPX Hello World program
+# hpx_test
+A simple HPX test program
 
 To compile the program first create a build subfolder:
 $mkdir build
@@ -12,5 +12,4 @@ $cmake -DHPX_ROOT=/opt/hpx ..
 
 Then make the program:
 $make
-# hpx_test
-# hpx_test
+
