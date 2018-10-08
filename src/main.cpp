@@ -19,7 +19,7 @@ int main(int argc, char* argv[])
     using hpx::parallel::for_loop;
     using hpx::parallel::execution::par;
 
-    std::size_t n = 50000UL;
+    std::size_t n = 10000000UL;
     std::vector<double> x(n,1);
     std::vector<double> y(n,1);
     double a=3.0;
@@ -28,10 +28,13 @@ int main(int argc, char* argv[])
     size_t chunk_size=8UL;
     hpx::parallel::execution::dynamic_chunk_size ds(chunk_size);
 
+    std::uint64_t t = hpx::util::high_resolution_clock::now();
     for_loop( par.with(ds), size_t(0), n, [&](int i)
              {
                  y[i] += a * x[i];
              });
+    std::uint64_t elapsed = hpx::util::high_resolution_clock::now() - t;
+    std::cout<<"size:   "<<n<<"   time(ns): "<<elapsed*1e-9<<std::endl;
 
     double sum_of_elems = std::accumulate(y.begin(), y.end(), 0);
     HPX_TEST_EQ(sum_of_elems, 4*n);
