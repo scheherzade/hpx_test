@@ -5,7 +5,7 @@ cmake_minimum_required(VERSION 2.8.10 FATAL_ERROR)
 ################################################################################
 # project metadata
 ################################################################################
-project(hpx_HelloWorld)
+project(hpx_test)
 
 ################################################################################
 # Find and Include HPX
@@ -54,24 +54,27 @@ set (sources
 
 #set(hello_world_FLAGS COMPONENT_DEPENDENCIES iostreams)
 
-find_package( LAPACK REQUIRED )
-include_directories(${LAPACK_INCLUDE_DIR})
+#find_package( LAPACK REQUIRED )
+#include_directories(${LAPACK_INCLUDE_DIR})
+#
+#find_package( BLAS REQUIRED )
+#include_directories(${BLAS_INCLUDE_DIR})
 
-find_package( BLAS REQUIRED )
-include_directories(${BLAS_INCLUDE_DIR})
+add_executable(hpx_test ${sources})
+hpx_setup_target(hpx_test)
 
-find_package(blaze REQUIRED)
-if(NOT blaze_FOUND)
-    message("Blaze could not be found. Please specify blaze_DIR to assist locating it.")
-endif()
+#add_hpx_executable(hpx_test
+#             SOURCES ${sources}
+#	                  FOLDER
+#	     COMPONENT_DEPENDENCIES iostreams
+#        DEPENDENCIES ${HPX_LIBRARIES})
+#
+#foreach(dir ${HPX_LIBRARY_DIR})
+#    target_link_libraries(hpx_test_exe PRIVATE -L${dir})
+#endforeach()
 
-include_directories(~/lib/blaze_openblas/include/)
-
-
-add_hpx_executable(hello_world
-             SOURCES ${sources}
-	     ${hello_world_FLAGS}
-             FOLDER
-	     COMPONENT_DEPENDENCIES iostreams
-        DEPENDENCIES ${BLAS_LIBRARIES} ${LAPACK_LIBRARIES})
-
+get_cmake_property(_variableNames VARIABLES)
+list (SORT _variableNames)
+foreach (_variableName ${_variableNames})
+    message(STATUS "${_variableName}=${${_variableName}}")
+endforeach()
