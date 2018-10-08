@@ -63,6 +63,10 @@ set (sources
 add_executable(hpx_test ${sources})
 hpx_setup_target(hpx_test)
 
+foreach(dir ${HPX_LIBRARY_DIR})
+    target_link_libraries(hpx_test PRIVATE -L${dir})
+endforeach()
+
 #add_hpx_executable(hpx_test
 #             SOURCES ${sources}
 #	                  FOLDER
