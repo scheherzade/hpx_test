@@ -82,3 +82,5 @@ list (SORT _variableNames)
 foreach (_variableName ${_variableNames})
     message(STATUS "${_variableName}=${${_variableName}}")
 endforeach()
+
+#cmake -DHPX_DIR=/home/sshirzad/lib/hpx/hpx_release_clang_no_hpxmp/lib/cmake/HPX -DCMAKE_C_COMPILER=/opt/mn/clang/6.0.0/bin/clang -DCMAKE_CXX_COMPILER=/opt/mn/clang/6.0.0/bin/clang++ -DCMAKE_CXX_FLAGS=-stdlib=libc++ ..
