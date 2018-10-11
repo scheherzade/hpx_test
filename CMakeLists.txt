@@ -66,21 +66,3 @@ hpx_setup_target(hpx_test)
 foreach(dir ${HPX_LIBRARY_DIR})
     target_link_libraries(hpx_test PRIVATE -L${dir})
 endforeach()
-
-#add_hpx_executable(hpx_test
-#             SOURCES ${sources}
-#	                  FOLDER
-#	     COMPONENT_DEPENDENCIES iostreams
-#        DEPENDENCIES ${HPX_LIBRARIES})
-#
-#foreach(dir ${HPX_LIBRARY_DIR})
-#    target_link_libraries(hpx_test_exe PRIVATE -L${dir})
-#endforeach()
-
-get_cmake_property(_variableNames VARIABLES)
-list (SORT _variableNames)
-foreach (_variableName ${_variableNames})
-    message(STATUS "${_variableName}=${${_variableName}}")
-endforeach()
-
-#cmake -DHPX_DIR=/home/sshirzad/lib/hpx/hpx_release_clang_no_hpxmp/lib/cmake/HPX -DCMAKE_C_COMPILER=/opt/mn/clang/6.0.0/bin/clang -DCMAKE_CXX_COMPILER=/opt/mn/clang/6.0.0/bin/clang++ -DCMAKE_CXX_FLAGS=-stdlib=libc++ ..
