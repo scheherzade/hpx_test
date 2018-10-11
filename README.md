@@ -8,7 +8,7 @@ Change directory to build subdirectory:
 $cd build
 
 And run cmake command:
-$cmake -DHPX_ROOT=/opt/hpx ..
+$cmake -DHPX_DIR= ...
 
 Then make the program:
 $make
