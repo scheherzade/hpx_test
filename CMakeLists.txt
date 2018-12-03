@@ -5,7 +5,7 @@ cmake_minimum_required(VERSION 2.8.10 FATAL_ERROR)
 ################################################################################
 # project metadata
 ################################################################################
-project(hpx_test)
+project(hpxmp_test)
 
 ################################################################################
 # Find and Include HPX
@@ -64,11 +64,11 @@ set (sources
 
 
 
-add_executable(hpx_test ${sources})
-hpx_setup_target(hpx_test)
+add_executable(hpxmp_test ${sources})
+hpx_setup_target(hpxmp_test)
 
 foreach(dir ${HPX_LIBRARY_DIR})
-    target_link_libraries(hpx_test PRIVATE -L${dir})
+    target_link_libraries(hpxmp_test PRIVATE -L${dir})
 endforeach()
 
 #add_hpx_executable(hpx_test
