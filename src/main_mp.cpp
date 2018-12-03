@@ -12,7 +12,7 @@ int hpx_main(boost::program_options::variables_map& vm)
     using hpx::parallel::for_loop;
     using hpx::parallel::execution::par;
 
-    std::size_t vector_size = vm["vec_size"].as<std::size_t>();
+    std::size_t vector_size = vm["v"].as<std::size_t>();
 
     using hpx::parallel::for_loop;
     using hpx::parallel::execution::par;
@@ -30,6 +30,8 @@ int hpx_main(boost::program_options::variables_map& vm)
 
     std::chrono::duration<double> elapsed_seconds = end-start;
     double elapsed_secs = elapsed_seconds.count();
+
+    std::cout<<"vector size: "<<vector_size<<std::endl;
 
     std::cout<<"time(seconds): "<<elapsed_secs<<std::endl;
 
@@ -53,7 +55,7 @@ int main(int argc, char* argv[])
 
     po::options_description desc_commandline;
     desc_commandline.add_options()
-            ("vec_size", po::value<std::size_t>()->default_value(10000),"vector size")
+            ("v", po::value<std::size_t>()->default_value(10),"vector size")
             ;
 
     // Initialize and run HPX
