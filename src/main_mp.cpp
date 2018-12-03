@@ -28,14 +28,14 @@ int hpx_main(boost::program_options::variables_map& vm)
     });
     auto end = std::chrono::system_clock::now();
 
-    std::chrono::duration<double> elapsed_seconds = end-start;
-    double elapsed_secs = elapsed_seconds.count();
+    std::chrono::duration<double> elapsed = end-start;
+    double elapsed_microsecs = elapsed.count()*1e6;
 
     std::cout<<"vector size: "<<vector_size<<std::endl;
 
-    std::cout<<"time(seconds): "<<elapsed_secs<<std::endl;
+    std::cout<<"time(microseconds): "<<elapsed_microsecs<<std::endl;
 
-    float operations = vector_size*1/elapsed_secs/1000000;
+    float operations = vector_size*1/elapsed_microsecs;
 
     for (int64_t i = 0; i < vector_size; i++){
         if(c[i] != 5){
