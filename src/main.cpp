@@ -34,9 +34,9 @@ int hpx_main(boost::program_options::variables_map& vm)
     hpx::parallel::execution::dynamic_chunk_size ds(chunk_size);
     std::uint64_t t = hpx::util::high_resolution_clock::now();
     for_loop( par.with(ds), size_t(0), n, [&](int i)
-             {
-                 y[i] += a * x[i];
-             });
+    {
+        y[i] += a * x[i];
+    });
     std::uint64_t elapsed = hpx::util::high_resolution_clock::now() - t;
     std::cout<<"vector size:   "<<n<<"   chunk size: "<<chunk_size<<"   time(ns): "<<elapsed*1e-9<<std::endl;
 
