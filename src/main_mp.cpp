@@ -23,7 +23,7 @@ int hpx_main(boost::program_options::variables_map& vm)
 
     auto start = std::chrono::system_clock::now();
 
-    for_loop(size_t(0), vector_size, [&](int i) {
+    for_loop(par, size_t(0), vector_size, [&](int i) {
         c[i] = a[i] + b[i];
     });
     auto end = std::chrono::system_clock::now();
